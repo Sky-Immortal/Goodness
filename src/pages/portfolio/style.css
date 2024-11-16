@@ -1,0 +1,82 @@
+:root {
+    --primary-color: #0D0D0D;
+    --secondary-color: #AA9E8B;
+    --accent-color: #EB5939;
+    --text-color: #AA9E8B;
+}
+
+.roulette-container {
+    display: flex; /* Use flexbox to arrange items in a row */
+    overflow: hidden; /* Hide overflow for a clean look */
+    width: 100%; /* Set width to fill the container */
+    position: relative; /* Position for absolute items */
+  }
+  
+  .roulette-container {
+    display: flex; /* Use flexbox to arrange items in a row */
+    overflow: hidden; /* Hide overflow for a clean look */
+    width: 100%; /* Set width to fill the container */
+    position: relative; /* Position for absolute items */
+  }
+  
+  .roulette-item {
+    display: flex; /* Use flexbox for the item layout */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center; /* Center items vertically */
+    min-width: 100%; /* Each item takes full width of the container */
+    transition: transform 0.3s ease-in-out; /* Keep transition duration for sliding */
+  }
+  
+  .roulette-item img {
+    width: 400px; /* Set a fixed width for the image */
+    height: 300px; /* Set a fixed height for the image */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    border-radius: 30px;
+  }
+  
+  .roulette-item .content {
+    padding: 20px; /* Add padding around the content */
+    text-align: left; /* Align text to the left */
+    color: var(--text-color); /* Set text color */
+    flex-grow: 1; /* Allow content to take up remaining space */
+  }
+  
+  /* Optional: Add some styling for the content */
+  .content a {
+    color: white; /* Ensure link color is visible */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make link bold */
+  }
+  
+  .content a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Add a transition for the active class */
+  .roulette-item.active {
+    transition: transform 0.2s ease-in-out; /* Smooth transition for active item */
+  }
+
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between; /* Space buttons apart */
+    margin-top: 20px; /* Add some spacing above the buttons */
+  }
+  
+  .navigation-buttons button {
+    background-color: var(--secondary-color); /* Use your defined color */
+    color: var(--primary-color); /* Text color */
+    border: none; /* No border */
+    padding: 10px 20px; /* Padding for the buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+  }
+  
+  .navigation-buttons button:hover {
+    background-color: var(--accent-color); /* Change color on hover */
+  }
+  
+  .navigation-buttons button:disabled {
+    background-color: #ccc; /* Grey out disabled buttons */
+    cursor: not-allowed; /* Change cursor for disabled */
+  }
