@@ -11,28 +11,30 @@
     width: 100%; /* Set width to fill the container */
     position: relative; /* Position for absolute items */
   }
-  
-  .roulette-container {
-    display: flex; /* Use flexbox to arrange items in a row */
-    overflow: hidden; /* Hide overflow for a clean look */
-    width: 100%; /* Set width to fill the container */
-    position: relative; /* Position for absolute items */
-  }
-  
+
   .roulette-item {
-    display: flex; /* Use flexbox for the item layout */
-    justify-content: flex-start; /* Align items to the start */
-    align-items: center; /* Center items vertically */
+    display: inline-block; /* Change to inline-block for horizontal alignment */
     min-width: 100%; /* Each item takes full width of the container */
-    transition: transform 0.3s ease-in-out; /* Keep transition duration for sliding */
-  }
+    transition: transform 0.3s ease-in-out; /* Transition for the pop-out effect */
+    position: relative; /* Position for absolute items */
+}
+.roulette-item:hover {
+  transform: scale(1.05); /* Scale up the item on hover */
+  z-index: 1; /* Bring the hovered item to the front */
+  box-shadow: 0 4px 20px white; /* Add shadow to the card */
+}
   
-  .roulette-item img {
-    width: 400px; /* Set a fixed width for the image */
-    height: 300px; /* Set a fixed height for the image */
-    object-fit: cover; /* Cover the container while maintaining aspect ratio */
-    border-radius: 30px;
-  }
+.roulette-item img {
+  width: 100%; /* Set width to 100% for responsiveness */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  border-radius: 30px;
+  transition: transform 0.3s ease-in-out; /* Transition for the image scaling */
+}
+
+.roulette-item:hover img {
+  transform: scale(1.1); /* Scale the image slightly on hover */
+}
   
   .roulette-item .content {
     padding: 20px; /* Add padding around the content */
@@ -80,3 +82,37 @@
     background-color: #ccc; /* Grey out disabled buttons */
     cursor: not-allowed; /* Change cursor for disabled */
   }
+
+  @media (max-width: 768px) {
+    .roulette-item {
+        min-width: 100%; /* Each item takes full width on mobile */
+    }
+
+    .roulette-item img {
+        height: 200px; /* Set a smaller fixed height for mobile */
+    }
+
+    .content {
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    .navigation-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center; /* Center buttons */
+    }
+
+    .navigation-buttons button {
+        width: 100%; /* Make buttons full width */
+        margin-bottom: 10px; /* Add space between buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    .roulette-item img {
+        height: 150px; /* Further reduce height for smaller screens */
+    }
+
+    .content {
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+}

@@ -85,11 +85,22 @@ section {
 }
 
 .intro_sec .text h1 {
-    font-size: 4rem;
+    font-size: 4rem; /* Default font size for larger screens */
     margin-bottom: 50px;
     font-weight: 700;
-    height: 200px;
-    width: 500px;
+    height: auto; /* Allow height to adjust */
+    width: auto; /* Allow width to adjust */
+    max-width: 100%; /* Prevent text from exceeding screen space */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+}
+
+@media (max-width: 768px) {
+    .intro_sec .text h1 {
+        font-size: 2rem; /* Reduce font size for mobile */
+        max-width: 90vw; /* Allow some margin on the sides */
+        text-wrap: wrap;
+    }
 }
 
 .intro_sec .text h3 {

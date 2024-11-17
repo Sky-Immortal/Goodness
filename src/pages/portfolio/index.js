@@ -6,34 +6,16 @@ import { dataportfolio, meta } from "../../content_option";
 
 export const Portfolio = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const slideDuration = 5000; // Duration for how long each slide is displayed (3 seconds)
-  const transitionDuration = 0;
-
   const totalItems = dataportfolio.length;
 
+  // Automatic scrolling effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % dataportfolio.length);
-    }, slideDuration); // Change slide every 3 seconds
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
+    }, 3000); // Change the number (3000) to adjust the scroll interval in milliseconds
 
-    const transitionTimeout = setTimeout(() => {
-      // Trigger the transition after the display time
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % dataportfolio.length);
-    }, slideDuration);
-
-    return () => {
-      clearInterval(interval); // Cleanup on component unmount
-      clearTimeout(transitionTimeout);
-    };
-  }, [dataportfolio.length]);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
-  };
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [totalItems]);
 
   return (
     <HelmetProvider>
@@ -53,7 +35,7 @@ export const Portfolio = () => {
           {dataportfolio.map((data, i) => (
             <div
               key={i}
-              className={`roulette-item ${i === currentIndex ? "active" : ""}`}
+              className="roulette-item"
               style={{
                 transform: `translateX(${(i - currentIndex) * 100}%)`,
               }}
@@ -67,10 +49,10 @@ export const Portfolio = () => {
           ))}
         </div>
         <div className="navigation-buttons">
-          <Button onClick={handlePrev} disabled={totalItems <= 1}>
+          <Button onClick={() => setCurrentIndex((currentIndex - 1 + totalItems) % totalItems)}>
             Previous
           </Button>
-          <Button onClick={handleNext} disabled={totalItems <= 1}>
+          <Button onClick={() => setCurrentIndex((currentIndex + 1) % totalItems)}>
             Next
           </Button>
         </div>
